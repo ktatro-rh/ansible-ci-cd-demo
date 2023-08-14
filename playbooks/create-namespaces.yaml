@@ -1,3 +1,8 @@
+---
+- hosts: localhost
+  collections:
+  - kubernetes.core
+tasks:
 - name: Create a k8s namespace
   kubernetes.core.k8s:
     name: demo-test
