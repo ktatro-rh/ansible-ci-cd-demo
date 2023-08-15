@@ -9,6 +9,7 @@ spec:
     matchLabels:
       app: hello-world
   template:
+    metadata:
       labels:
         app: hello-world
     spec:
