@@ -1,0 +1,13 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: hello-world
+  namespace: demo-test
+  labels: {}
+spec:
+  to:
+    kind: Service
+    name: hello-world
+  tls: null
+  port:
+    targetPort: 8080
