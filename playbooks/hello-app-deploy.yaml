@@ -4,9 +4,9 @@
   - kubernetes.core
   vars:
     image_tag: "{{ image_tag }}"
-    
+
   tasks:
   - name: create deployment
     kubernetes.core.k8s:
-      src: ../openshift-resources/app-hello-deployment.yaml
+      definition: "{{ lookup('template', '../openshift-resources/app-hello-deployment.yaml') | from_yaml }}"
       state: present
