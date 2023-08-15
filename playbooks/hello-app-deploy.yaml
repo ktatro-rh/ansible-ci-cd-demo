@@ -4,9 +4,20 @@
   - kubernetes.core
   vars:
     image_tag: "{{ image_tag }}"
+    namespace: "{{ namespace }}"
 
   tasks:
   - name: create deployment
     kubernetes.core.k8s:
       definition: "{{ lookup('template', '../openshift-resources/app-hello-deployment.yaml') | from_yaml }}"
+      state: present
+  
+  - name: create service
+    kubernetes.core.k8s:
+      definition: "{{ lookup('template', '../openshift-resources/app-hello-service.yaml') | from_yaml }}"
+      state: present
+  
+  - name: create route
+    kubernetes.core.k8s:
+      definition: "{{ lookup('template', '../openshift-resources/app-hello-route.yaml') | from_yaml }}"
       state: present

@@ -1,0 +1,56 @@
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+  name: event-listener-hello-github
+  namespace: demo-test
+spec:
+  namespaceSelector: {}
+  resources: {}
+  serviceAccountName: pipeline
+  triggers:
+    - bindings:
+        - kind: ClusterTriggerBinding
+          ref: github-push
+      template:
+        ref: trigger-template-hello-github
+---
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: TriggerTemplate
+metadata:
+  name: trigger-template-hello-github
+  namespace: demo-test
+spec:
+  params:
+    - name: git-revision
+    - name: git-commit-message
+    - name: git-repo-url
+    - name: git-repo-name
+    - name: content-type
+    - name: pusher-name
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        annotations:
+          pipeline.openshift.io/started-by: admin
+        generateName: hello-pipeline-
+        labels:
+          tekton.dev/pipeline: hello-pipeline
+        namespace: aap
+      spec:
+        params: []
+        pipelineRef:
+          name: hello-pipeline
+        resources: []
+        status: null
+        workspaces:
+          - name: workspace
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                  - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+                storageClassName: gp3-csi
+                volumeMode: Filesystem

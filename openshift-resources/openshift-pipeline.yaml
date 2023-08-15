@@ -1,9 +1,10 @@
----
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: hello-pipeline
+  name: hello-world-pipeline
   namespace: demo-test
+  resourceVersion: '519478'
+  uid: adc35e73-32b1-4274-aaa3-f952f4f7c572
 spec:
   tasks:
     - name: git-clone
@@ -57,7 +58,7 @@ spec:
           value: 'true'
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/aap/hello-world:latest
+            image-registry.openshift-image-registry.svc:5000/aap/hello-world:$(tasks.timestamp-task.results.current-date-unix-timestamp)
         - name: BUILDER_IMAGE
           value: >-
             registry.redhat.io/rhel8/buildah@sha256:00795fafdab9bbaa22cd29d1faa1a01e604e4884a2c935c1bf8e3d1f0ad1c084
@@ -79,62 +80,21 @@ spec:
       taskRef:
         kind: Task
         name: timestamp-task
+    - name: aap-launch-workflow-deploy-app
+      params:
+        - name: baseUrl
+          value: >-
+            https://automationcontroller-aap.apps.cluster-72bx8.72bx8.sandbox430.opentlc.com/
+        - name: workflowId
+          value: '12'
+        - name: imageTag
+          value: $(tasks.timestamp-task.results.current-date-unix-timestamp)
+        - name: aapCredentialSecret
+          value: tower-creds
+      runAfter:
+        - s2i-nodejs
+      taskRef:
+        kind: Task
+        name: aap-launch-workflow
   workspaces:
     - name: workspace
-
----
-apiVersion: triggers.tekton.dev/v1alpha1
-kind: EventListener
-  name: event-listener-hello-github
-  namespace: demo-test
-spec:
-  namespaceSelector: {}
-  resources: {}
-  serviceAccountName: pipeline
-  triggers:
-    - bindings:
-        - kind: ClusterTriggerBinding
-          ref: github-push
-      template:
-        ref: trigger-template-hello-github
----
-apiVersion: triggers.tekton.dev/v1alpha1
-kind: TriggerTemplate
-metadata:
-  name: trigger-template-hello-github
-  namespace: demo-test
-spec:
-  params:
-    - name: git-revision
-    - name: git-commit-message
-    - name: git-repo-url
-    - name: git-repo-name
-    - name: content-type
-    - name: pusher-name
-  resourcetemplates:
-    - apiVersion: tekton.dev/v1beta1
-      kind: PipelineRun
-      metadata:
-        annotations:
-          pipeline.openshift.io/started-by: admin
-        generateName: hello-pipeline-
-        labels:
-          tekton.dev/pipeline: hello-pipeline
-        namespace: aap
-      spec:
-        params: []
-        pipelineRef:
-          name: hello-pipeline
-        resources: []
-        status: null
-        workspaces:
-          - name: workspace
-            volumeClaimTemplate:
-              spec:
-                accessModes:
-                  - ReadWriteOnce
-                resources:
-                  requests:
-                    storage: 1Gi
-                storageClassName: gp3-csi
-                volumeMode: Filesystem
