@@ -1,11 +1,12 @@
 ---
 - hosts: localhost
   collections:
+  vars:
+    image_tag: "{{ image_tag }}"
   - kubernetes.core
 
   tasks:
   - name: create deployment
-    register: image_tag
     kubernetes.core.k8s:
       src: ../openshift-resources/app-hello-deployment.yaml
       state: present
