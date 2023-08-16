@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  collections:
+  - kubernetes.core
+  vars:
+    image_tag: "{{ image_tag }}"
+
+  tasks:
+  - name: create deployment
+    kubernetes.core.k8s:
+      definition: "{{ lookup('template', '../openshift-resources/app-hello-move-is.yaml') | from_yaml }}"
+      state: present
+  
