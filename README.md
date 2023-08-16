@@ -29,8 +29,8 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
 
 # Playbook/Job Descriptions
 
-create-namespaces  - Run once to create demo-test and demo-prod namespaces
-create-pipeline  - Run once to create pipeline, custom tasks, aap credentials secret, etc.
-job-deploy-hello-app-test - Creates / Updates deployment, service, and route in demo-test
-job-deploy-hello-app-prod - Creates / Updates deployment, service, and route in demo-prod
-promote-image-to-prod  - Moves a specific image tag from demo-test to demo-prod
+create-namespaces  - Run once to create demo-test and demo-prod namespaces  
+create-pipeline  - Run once to create pipeline, custom tasks, aap credentials secret, etc.  
+job-deploy-hello-app-test - Creates / Updates deployment, service, and route in demo-test  
+job-deploy-hello-app-prod - Creates / Updates deployment, service, and route in demo-prod  
+promote-image-to-prod  - Moves a specific image tag from demo-test to demo-prod  
