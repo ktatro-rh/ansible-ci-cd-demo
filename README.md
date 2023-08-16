@@ -26,11 +26,17 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
 
     [job-deploy-hello-app-test] -> [Approval to promote to production (Approval Step)] -> [promote-image-to-prod] -> [job-deploy-hello-app-prod] 
 
+13. Run Playbooks create-namespaces, create-pipeline
+14. Update Pipeline with correct URL to AAP.
+14. Add Webhook to Github source repo
+15. Check in code to trigger pipeline
 
-# Playbook/Job Descriptions
+## Playbook/Job Descriptions
 
+### One Shots run from Ansible
 create-namespaces  - Run once to create demo-test and demo-prod namespaces  
-create-pipeline  - Run once to create pipeline, custom tasks, aap credentials secret, etc.  
+create-pipeline  - Run once to create pipeline, custom tasks, aap credentials secret, etc.
+### Called from workflow (initiated by Openshift Pipeline)  
 job-deploy-hello-app-test - Creates / Updates deployment, service, and route in demo-test  
 job-deploy-hello-app-prod - Creates / Updates deployment, service, and route in demo-prod  
 promote-image-to-prod  - Moves a specific image tag from demo-test to demo-prod  
