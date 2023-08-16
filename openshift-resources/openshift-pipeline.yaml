@@ -3,8 +3,6 @@ kind: Pipeline
 metadata:
   name: hello-world-pipeline
   namespace: demo-test
-  resourceVersion: '519478'
-  uid: adc35e73-32b1-4274-aaa3-f952f4f7c572
 spec:
   tasks:
     - name: git-clone
