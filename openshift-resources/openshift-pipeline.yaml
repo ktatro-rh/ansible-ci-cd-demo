@@ -81,8 +81,7 @@ spec:
     - name: aap-launch-workflow-deploy-app
       params:
         - name: baseUrl
-          value: >-
-            https://automationcontroller-aap.apps.cluster-72bx8.72bx8.sandbox430.opentlc.com/
+          value: "{{ aap_base_url }}"
         - name: workflowId
           value: '12'
         - name: imageTag

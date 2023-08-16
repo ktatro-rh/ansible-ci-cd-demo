@@ -14,13 +14,13 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
 10. Create inventory openshift with host: {'ansible_host': '127.0.0.1', 'ansible_connection': 'local'}
 11. Create Job Templates with Job Type: Run, Inventory: openshift, Project ktatro-demo, Default Execution Environment, Kubernetes Bearer Token
     
-    | Template Name             | Playbook                                  | Survey                 | Extra Variables        |  
-    |---------------------------|-------------------------------------------|------------------------|------------------------|
-    | create-namespaces         | playbooks/create-namespaces.yaml          | -                      | -                      |
-    | create-pipeline           | playbooks/create-openshift-pipeline       | aap_password           | -                      | 
-    | job-deploy-hello-app-prod | playbooks/hello-app-deploy.yaml           | -                      | namespace: demo-prod   | 
-    | job-deploy-hello-app-test | playbooks/hello-app-deploy.yaml           | -                      | namespace: demo-test   | 
-    | promote-image-to-prod     | playbooks/hello-app-promote-image.yaml    | -                      | CHECK PROMPT ON LAUNCH |
+    | Template Name             | Playbook                                  | Survey                     | Extra Variables        |  
+    |---------------------------|-------------------------------------------|----------------------------|------------------------|
+    | create-namespaces         | playbooks/create-namespaces.yaml          | -                          | -                      |
+    | create-pipeline           | playbooks/create-openshift-pipeline       | aap_password, aap_base_url | -                      | 
+    | job-deploy-hello-app-prod | playbooks/hello-app-deploy.yaml           | -                          | namespace: demo-prod   | 
+    | job-deploy-hello-app-test | playbooks/hello-app-deploy.yaml           | -                          | namespace: demo-test   | 
+    | promote-image-to-prod     | playbooks/hello-app-promote-image.yaml    | -                          | CHECK PROMPT ON LAUNCH |
 
 12. Create Workflow Templates with Job Type: Run, Inventory: openshift, Extra variables: CHECK PROMPT ON LAUNCH
 
