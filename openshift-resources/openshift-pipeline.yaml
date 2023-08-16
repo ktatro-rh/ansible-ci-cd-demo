@@ -56,7 +56,7 @@ spec:
           value: 'true'
         - name: IMAGE
           value: >-
-            image-registry.openshift-image-registry.svc:5000/aap/hello-world:$(tasks.timestamp-task.results.current-date-unix-timestamp)
+            image-registry.openshift-image-registry.svc:5000/demo-test/hello-world:$(tasks.timestamp-task.results.current-date-unix-timestamp)
         - name: BUILDER_IMAGE
           value: >-
             registry.redhat.io/rhel8/buildah@sha256:00795fafdab9bbaa22cd29d1faa1a01e604e4884a2c935c1bf8e3d1f0ad1c084
