@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: hello-world-pipeline
+  name: hello-pipeline
   namespace: demo-test
 spec:
   tasks:
