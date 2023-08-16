@@ -20,7 +20,7 @@ spec:
         generateName: hello-pipeline-
         labels:
           tekton.dev/pipeline: hello-pipeline
-        namespace: aap
+        namespace: demo-test
       spec:
         params: []
         pipelineRef:
