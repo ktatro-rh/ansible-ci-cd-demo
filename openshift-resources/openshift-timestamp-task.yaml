@@ -13,7 +13,7 @@ spec:
       command:
         - /bin/bash
         - '-c'
-        - date +%s | tee $(results.current-date-unix-timestamp.path)
+        - date +%s | tr -d '\n'| tee $(results.current-date-unix-timestamp.path)
 ---
 apiVersion: tekton.dev/v1beta1
 kind: Task
