@@ -88,7 +88,7 @@ spec:
         - name: imageTag
           value: $(tasks.timestamp-task.results.current-date-unix-timestamp)
         - name: aapCredentialSecret
-          value: tower-creds
+          value: aap-creds
       runAfter:
         - s2i-nodejs
       taskRef:
