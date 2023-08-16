@@ -16,7 +16,7 @@ spec:
       containers:
         - name: container
           image: >-
-            image-registry.openshift-image-registry.svc:5000/aap/hello-world:{{ image_tag }}
+            image-registry.openshift-image-registry.svc:5000/{{ namespace }}/hello-world:{{ image_tag }}
           ports:
             - containerPort: 8080
               protocol: TCP
