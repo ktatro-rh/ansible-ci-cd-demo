@@ -3,6 +3,10 @@ apiVersion: apps/v1
 metadata:
   name: hello-world
   namespace: "{{ namespace }}"
+  labels:
+    app: hello-world
+    deployed-by: ansible
+    built-by: openshift-pipelines
 spec:
   replicas: 3
   selector:
