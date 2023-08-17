@@ -83,7 +83,7 @@ spec:
         - name: baseUrl
           value: "{{ aap_base_url }}"
         - name: workflowId
-          value: '12'
+          value: '{{ workflow_id }}'
         - name: imageTag
           value: $(tasks.timestamp-task.results.current-date-unix-timestamp)
         - name: aapCredentialSecret

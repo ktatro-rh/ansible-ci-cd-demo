@@ -17,7 +17,7 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
     | Template Name             | Playbook                                  | Survey                     | Extra Variables        |  
     |---------------------------|-------------------------------------------|----------------------------|------------------------|
     | create-namespaces         | playbooks/create-namespaces.yaml          | -                          | -                      |
-    | create-pipeline           | playbooks/create-openshift-pipeline       | aap_password, aap_base_url, github_url | -                      | 
+    | create-pipeline           | playbooks/create-openshift-pipeline       | aap_password, aap_base_url, github_url, workflow_id | -                      | 
     | job-deploy-hello-app-prod | playbooks/hello-app-deploy.yaml           | -                          | namespace: demo-prod   | 
     | job-deploy-hello-app-test | playbooks/hello-app-deploy.yaml           | -                          | namespace: demo-test   | 
     | promote-image-to-prod     | playbooks/hello-app-promote-image.yaml    | -                          | CHECK PROMPT ON LAUNCH |
