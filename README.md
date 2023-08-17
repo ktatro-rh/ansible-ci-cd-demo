@@ -27,7 +27,6 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
     [job-deploy-hello-app-test] -> [Approval to promote to production (Approval Step)] -> [promote-image-to-prod] -> [job-deploy-hello-app-prod] 
 
 13. Run Playbooks create-namespaces, create-pipeline
-14. Update Pipeline with correct URL to AAP.
 14. Add Webhook to Github source repo
 15. Check in code to trigger pipeline
 

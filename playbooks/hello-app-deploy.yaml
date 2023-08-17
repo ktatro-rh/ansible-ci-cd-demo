@@ -2,10 +2,7 @@
 - hosts: localhost
   collections:
   - kubernetes.core
-  vars:
-    image_tag: "{{ image_tag }}"
-    namespace: "{{ namespace }}"
-
+  
   tasks:
   - name: create deployment
     kubernetes.core.k8s:
