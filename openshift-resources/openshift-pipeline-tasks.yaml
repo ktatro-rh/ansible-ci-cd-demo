@@ -10,6 +10,7 @@ spec:
       description: The current date in unix timestamp format
   steps:
     - image: registry.redhat.io/ubi7/ubi-minimal
+      name: generate-timestamp
       command:
         - /bin/bash
         - '-c'
