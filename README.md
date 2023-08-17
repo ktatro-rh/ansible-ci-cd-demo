@@ -22,11 +22,11 @@ These are the steps for setting up the AAP CI/CD Demo on a fresh OpenShift 4.x i
     | job-deploy-hello-app-test | playbooks/hello-app-deploy.yaml           | -                          | namespace: demo-test   | 
     | promote-image-to-prod     | playbooks/hello-app-promote-image.yaml    | -                          | CHECK PROMPT ON LAUNCH |
 
-12. Create Workflow Templates with Job Type: Run, Inventory: openshift, Extra variables: CHECK PROMPT ON LAUNCH
+12. Create Workflow Template with Job Type: Run, Inventory: openshift, Extra variables: CHECK PROMPT ON LAUNCH
 
     [job-deploy-hello-app-test] -> [Approval to promote to production (Approval Step)] -> [promote-image-to-prod] -> [job-deploy-hello-app-prod] 
 
-13. Run Playbooks create-namespaces, create-pipeline
+13. Run Playbooks create-namespaces, create-pipeline. Note github_url is for the node application you will be building, not the Ansible Repo. workflow_id is the workflow id of workflow you created in step 12 (will be in the URL when you view the workflow).
 14. Add Webhook to Github source repo
 15. Check in code to trigger pipeline
 
