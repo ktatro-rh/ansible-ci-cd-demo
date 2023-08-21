@@ -7,6 +7,8 @@ metadata:
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: ansible-cluster-admin
 subjects:
   - kind: ServiceAccount
     name: ansible
